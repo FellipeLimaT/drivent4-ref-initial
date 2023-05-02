@@ -1,5 +1,5 @@
 import { notFoundError } from '@/errors';
-import { cannotListHotelsError } from '@/errors/cannot-list-hotels-error';
+// import { cannotListHotelsError } from '@/errors/cannot-list-hotels-error';
 import { enrollmentRepository, ticketsRepository, hotelsRepository } from '@/repositories';
 
 async function listHotels(userId: number) {
@@ -10,7 +10,7 @@ async function listHotels(userId: number) {
   const ticket = await ticketsRepository.findTicketByEnrollmentId(enrollment.id);
 
   if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
-    throw cannotListHotelsError();
+    throw notFoundError();
   }
 }
 
