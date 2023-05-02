@@ -1,7 +1,6 @@
 import { Ticket, TicketStatus, TicketType } from '@prisma/client';
 import { notFoundError } from '@/errors';
-import enrollmentRepository from '@/repositories/enrollment-repository';
-import ticketsRepository from '@/repositories/tickets-repository';
+import { enrollmentRepository, ticketsRepository } from '@/repositories';
 import { CreateTicketParams } from '@/protocols';
 
 async function getTicketType(): Promise<TicketType[]> {
@@ -38,6 +37,8 @@ async function createTicket(userId: number, ticketTypeId: number): Promise<Ticke
   return ticket;
 }
 
-const ticketService = { getTicketType, getTicketByUserId, createTicket };
-
-export default ticketService;
+export const ticketService = {
+  getTicketType,
+  getTicketByUserId,
+  createTicket,
+};

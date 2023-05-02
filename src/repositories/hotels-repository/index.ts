@@ -15,9 +15,7 @@ async function findRoomsByHotelId(hotelId: number) {
   });
 }
 
-const hotelRepository = {
+export const hotelsRepository = {
   findHotels,
   findRoomsByHotelId,
 };
-
-export default hotelRepository;

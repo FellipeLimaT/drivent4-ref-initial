@@ -1,8 +1,8 @@
 import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import eventsService from '../events-service';
 import { duplicatedEmailError } from './errors';
-import userRepository from '@/repositories/user-repository';
+import { eventsService } from '@/services';
+import { userRepository } from '@/repositories';
 import { cannotEnrollBeforeStartDateError } from '@/errors';
 
 export async function createUser({ email, password }: CreateUserParams): Promise<User> {
@@ -33,9 +33,8 @@ async function canEnrollOrFail() {
 
 export type CreateUserParams = Pick<User, 'email' | 'password'>;
 
-const userService = {
+export const userService = {
   createUser,
 };
 
 export * from './errors';
-export default userService;
